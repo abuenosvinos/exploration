@@ -1,0 +1,7 @@
+home:
+    path: /
+    controller: App\Infrastructure\UI\Controller\StatusController::home
+
+status:
+  path: /status
+  controller: App\Infrastructure\UI\Controller\StatusController::status

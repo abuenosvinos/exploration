@@ -1,0 +1,8 @@
+parameters:
+  explorers:
+
+    ROVER:
+      name: Rover
+
+    CURIOSITY:
+      name: Curiosity
