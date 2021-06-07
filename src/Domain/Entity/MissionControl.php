@@ -99,20 +99,24 @@ class MissionControl
 
     private function moveForward(): Position
     {
-        if ($this->directionExplorer->direction() === 'N') {
-            $newPosition = Position::create($this->positionExplorer->x(), $this->positionExplorer->y() - 1);
-        } elseif ($this->directionExplorer->direction() === 'W') {
-            $newPosition = Position::create($this->positionExplorer->x() - 1, $this->positionExplorer->y());
-        } elseif ($this->directionExplorer->direction() === 'S') {
-            $newPosition = Position::create($this->positionExplorer->x(), $this->positionExplorer->y() + 1);
-        } elseif ($this->directionExplorer->direction() === 'E') {
-            $newPosition = Position::create($this->positionExplorer->x() + 1, $this->positionExplorer->y());
+        try {
+            if ($this->directionExplorer->direction() === 'N') {
+                $newPosition = Position::create($this->positionExplorer->latitude(), $this->positionExplorer->longitude() - 1);
+            } elseif ($this->directionExplorer->direction() === 'W') {
+                $newPosition = Position::create($this->positionExplorer->latitude() - 1, $this->positionExplorer->longitude());
+            } elseif ($this->directionExplorer->direction() === 'S') {
+                $newPosition = Position::create($this->positionExplorer->latitude(), $this->positionExplorer->longitude() + 1);
+            } elseif ($this->directionExplorer->direction() === 'E') {
+                $newPosition = Position::create($this->positionExplorer->latitude() + 1, $this->positionExplorer->longitude());
+            }
+        } catch (InvalidArgumentException) {
+            throw new InvalidArgumentException(sprintf('Not possible movement. %s can\'t fly', $this->explorer->name()));
         }
 
-        if ($newPosition->x() < $this->planet->minHeight() ||
-            $newPosition->y() < $this->planet->minLength() ||
-            $newPosition->x() > $this->planet->maxLength() ||
-            $newPosition->y() > $this->planet->maxHeight()) {
+        if ($newPosition->latitude() < $this->planet->minHeight() ||
+            $newPosition->longitude() < $this->planet->minLength() ||
+            $newPosition->latitude() > $this->planet->maxLength() ||
+            $newPosition->longitude() > $this->planet->maxHeight()) {
             throw new InvalidArgumentException(sprintf('Not possible movement. %s can\'t fly', $this->explorer->name()));
         }
 

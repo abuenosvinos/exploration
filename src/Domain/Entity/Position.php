@@ -8,34 +8,34 @@ use InvalidArgumentException;
 
 class Position
 {
-    private int $x;
-    private int $y;
+    private int $latitude;
+    private int $longitude;
 
-    private function __construct(int $x, int $y)
+    private function __construct(int $latitude, int $longitude)
     {
-        if ($x < 0) {
-            throw new InvalidArgumentException(sprintf('The value x of a Position has to be a positive value (%s)', $x));
+        if ($latitude < 0) {
+            throw new InvalidArgumentException(sprintf('The latitude of a Position has to be a positive value (%s)', $latitude));
         }
-        if ($y < 0) {
-            throw new InvalidArgumentException(sprintf('The value y of a Position has to be a positive value (%s)', $y));
+        if ($longitude < 0) {
+            throw new InvalidArgumentException(sprintf('The longitude of a Position has to be a positive value (%s)', $longitude));
         }
 
-        $this->x = $x;
-        $this->y = $y;
+        $this->latitude = $latitude;
+        $this->longitude = $longitude;
     }
 
-    public static function create(int $x, int $y)
+    public static function create(int $latitude, int $longitude)
     {
-        return new self($x, $y);
+        return new self($latitude, $longitude);
     }
 
-    public function x(): int
+    public function latitude(): int
     {
-        return $this->x;
+        return $this->latitude;
     }
 
-    public function y(): int
+    public function longitude(): int
     {
-        return $this->y;
+        return $this->longitude;
     }
 }

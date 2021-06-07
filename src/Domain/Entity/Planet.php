@@ -23,11 +23,11 @@ class Planet
 
         /** @var Obstacle $obstacle */
         foreach ($obstacles as $obstacle) {
-            if ($obstacle->position()->x() > $length || $obstacle->position()->y() > $height) {
-                throw new InvalidArgumentException(sprintf('The Position of an obstacle (%s / %s) is outside the surface of the planet (%s / %s)', $obstacle->position()->x(), $obstacle->position()->y(), $length, $height));
+            if ($obstacle->position()->latitude() > $length || $obstacle->position()->longitude() > $height) {
+                throw new InvalidArgumentException(sprintf('The Position of an obstacle (%s / %s) is outside the surface of the planet (%s / %s)', $obstacle->position()->latitude(), $obstacle->position()->longitude(), $length, $height));
             }
 
-            $this->map[$obstacle->position()->x()][$obstacle->position()->y()] = $obstacle;
+            $this->map[$obstacle->position()->latitude()][$obstacle->position()->longitude()] = $obstacle;
         }
     }
 
@@ -58,7 +58,7 @@ class Planet
 
     public function hasAnObstacle(Position $position): bool
     {
-        return isset($this->map[$position->x()][$position->y()]);
+        return isset($this->map[$position->latitude()][$position->longitude()]);
     }
 
     public function minHeight(): int

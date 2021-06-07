@@ -39,7 +39,7 @@ class ShowMapOperation implements Operation
 
         $io->writeln(sprintf('Map of %s (%s / %s)', $planet->name(), $planet->length(), $planet->height()));
 
-        $io->writeln(sprintf('%s at position (%s / %s) looking at %s', $explorer->name(), $positionExplorer->x(), $positionExplorer->y(), $directionExplorer->direction()));
+        $io->writeln(sprintf('%s at position (%s / %s) looking at %s', $explorer->name(), $positionExplorer->latitude(), $positionExplorer->longitude(), $directionExplorer->direction()));
 
         $matrix = [];
         for ($h=0; $h<$planet->height(); $h++) {
@@ -62,10 +62,10 @@ class ShowMapOperation implements Operation
 
         /** @var Obstacle $obstacle */
         foreach ($planet->obstacles() as $obstacle) {
-            $matrix[$obstacle->position()->y()][$obstacle->position()->x()] = '<fg=red>X</>';
+            $matrix[$obstacle->position()->longitude()][$obstacle->position()->latitude()] = '<fg=red>X</>';
         }
 
-        $matrix[$positionExplorer->y()][$positionExplorer->x()] = '<fg=green>'.$this->getSymbolDirection($directionExplorer).'</>';
+        $matrix[$positionExplorer->longitude()][$positionExplorer->latitude()] = '<fg=green>'.$this->getSymbolDirection($directionExplorer).'</>';
 
         for ($h=0; $h<count($matrix); $h++) {
             for ($l=0; $l<count($matrix[$h]); $l++) {

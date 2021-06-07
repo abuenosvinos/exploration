@@ -13,8 +13,8 @@ class PositionTest extends TestCase
     public function testValidValues()
     {
         $position = Position::create(3, 7);
-        $this->assertEquals($position->x(), 3);
-        $this->assertEquals($position->y(), 7);
+        $this->assertEquals($position->latitude(), 3);
+        $this->assertEquals($position->longitude(), 7);
     }
 
     public function testNotValidValues()

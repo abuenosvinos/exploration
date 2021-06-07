@@ -29,8 +29,8 @@ class MissionControlTest extends TestCase
         $this->assertEquals($missionControl->planet()->name(), 'test');
         $this->assertEquals($missionControl->planet()->length(), 35);
         $this->assertEquals($missionControl->planet()->height(), 45);
-        $this->assertEquals($missionControl->positionExplorer()->x(), 5);
-        $this->assertEquals($missionControl->positionExplorer()->y(), 7);
+        $this->assertEquals($missionControl->positionExplorer()->latitude(), 5);
+        $this->assertEquals($missionControl->positionExplorer()->longitude(), 7);
         $this->assertEquals($missionControl->directionExplorer()->direction(), Direction::NORTH);
     }
 
@@ -44,18 +44,18 @@ class MissionControlTest extends TestCase
         );
 
         $missionControl->move(Movement::create(Movement::FORWARD));
-        $this->assertEquals($missionControl->positionExplorer()->x(), 5);
-        $this->assertEquals($missionControl->positionExplorer()->y(), 6);
+        $this->assertEquals($missionControl->positionExplorer()->latitude(), 5);
+        $this->assertEquals($missionControl->positionExplorer()->longitude(), 6);
         $this->assertEquals($missionControl->directionExplorer()->direction(), Direction::NORTH);
 
         $missionControl->move(Movement::create(Movement::LEFT));
-        $this->assertEquals($missionControl->positionExplorer()->x(), 5);
-        $this->assertEquals($missionControl->positionExplorer()->y(), 6);
+        $this->assertEquals($missionControl->positionExplorer()->latitude(), 5);
+        $this->assertEquals($missionControl->positionExplorer()->longitude(), 6);
         $this->assertEquals($missionControl->directionExplorer()->direction(), Direction::WEST);
 
         $missionControl->move(Movement::create(Movement::FORWARD));
-        $this->assertEquals($missionControl->positionExplorer()->x(), 4);
-        $this->assertEquals($missionControl->positionExplorer()->y(), 6);
+        $this->assertEquals($missionControl->positionExplorer()->latitude(), 4);
+        $this->assertEquals($missionControl->positionExplorer()->longitude(), 6);
         $this->assertEquals($missionControl->directionExplorer()->direction(), Direction::WEST);
     }
 

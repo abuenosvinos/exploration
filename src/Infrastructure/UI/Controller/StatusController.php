@@ -33,8 +33,8 @@ class StatusController
             ],
             'explorer' => [
                 'name' => $missionControl->explorer()->name(),
-                'x' => $missionControl->positionExplorer()->x(),
-                'y' => $missionControl->positionExplorer()->y(),
+                'x' => $missionControl->positionExplorer()->latitude(),
+                'y' => $missionControl->positionExplorer()->longitude(),
                 'direction' => $missionControl->directionExplorer()->direction()
             ]
         ];

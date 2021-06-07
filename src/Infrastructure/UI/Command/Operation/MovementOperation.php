@@ -48,8 +48,8 @@ class MovementOperation implements Operation
         $io->writeln(sprintf(
             '%s safe at position (%s / %s) looking at %s',
             $missionControl->explorer()->name(),
-            $missionControl->positionExplorer()->x(),
-            $missionControl->positionExplorer()->y(),
+            $missionControl->positionExplorer()->latitude(),
+            $missionControl->positionExplorer()->longitude(),
             $missionControl->directionExplorer()->direction()
         ));
         $io->writeln('');

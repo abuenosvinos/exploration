@@ -47,9 +47,9 @@ class NewMissionOperation implements Operation
         $explorer = $this->askExplorerToSend($io);
         $positionExplorer = null;
         while (!$positionExplorer) {
-            $x = $this->askXPositionExplorerInPlanet($io, $planet);
-            $y = $this->askYPositionExplorerInPlanet($io, $planet);
-            $positionExplorer = Position::create($x, $y);
+            $latitude = $this->askXPositionExplorerInPlanet($io, $planet);
+            $longitude = $this->askYPositionExplorerInPlanet($io, $planet);
+            $positionExplorer = Position::create($latitude, $longitude);
             if ($planet->hasAnObstacle($positionExplorer)) {
                 $io->note('There is an Obstacle in that position, you need to choose other');
                 $positionExplorer = null;
@@ -61,7 +61,7 @@ class NewMissionOperation implements Operation
 
         /** @var MissionControl $missionControl */
         $missionControl = $this->queryBus->ask(new GetMissionControlQuery());
-        $io->writeln(sprintf('%s has landed on (%s / %s) looking at %s', $missionControl->explorer()->name(), $missionControl->positionExplorer()->x(), $missionControl->positionExplorer()->y(), $missionControl->directionExplorer()->direction()));
+        $io->writeln(sprintf('%s has landed on (%s / %s) looking at %s', $missionControl->explorer()->name(), $missionControl->positionExplorer()->latitude(), $missionControl->positionExplorer()->longitude(), $missionControl->directionExplorer()->direction()));
         $io->writeln('');
     }
 
